@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELVET | Private Guest List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Subtle atmospheric noise -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <div class="logo">VELVET</div>
+      <div class="nav-meta">Toronto / Mar 15</div>
+    </nav>
+
+    <main>
+      <!-- Hero: Pure Status, Zero Logistics -->
+      <section class="hero-gate">
+        <div class="content-wrapper">
+          <h1 class="headline">
+            <span style="white-space: nowrap">Private guest list.</span><br />
+            <span style="white-space: nowrap">Real chemistry.</span>
+          </h1>
+          <p class="manifesto">
+            For people tired of random swipes and open-entry rooms. Applications
+            are reviewed to keep the guest list balanced and intentional.
+          </p>
+
+          <div class="gate-action fade-in">
+            <button class="btn-gate" onclick="openGate()">Apply to Join</button>
+            <div class="gate-meta">
+              <span>Limited to 40 guests</span>
+              <span class="slash">/</span>
+              <span>Private room</span>
+              <span class="slash">/</span>
+              <span>Application required</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Room: Atmosphere & Taste -->
+      <section class="the-room" id="the-room">
+        <div class="room-grid">
+          <div class="room-text">
+            <h2 class="section-heading">The room.</h2>
+            <p>Forty guests. Balanced intentionally. Hosted with care.</p>
+            <p>
+              This is not open-entry speed dating. VELVET is designed to feel
+              smaller, better, and more considered. You will meet each guest in
+              a structured but natural format, then make your selections
+              privately the following day.
+            </p>
+            <p>
+              If there is mutual interest, we connect you. No public lists. No
+              awkward rejections. No endless messaging before meeting.
+            </p>
+          </div>
+          <div class="room-atmosphere">
+            <!-- We use a CSS gradient/blur shape to imply atmosphere without showing a literal "mid" bar photo -->
+            <div class="atmosphere-blur"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admission Tiers: Framing scarcity -->
+      <section class="the-admission">
+        <div class="content-wrapper">
+          <h2 class="section-heading">Admission.</h2>
+          <p class="tier-intro">
+            Entry is released in limited tiers. Selected guests receive access
+            based on fit, balance, and availability.
+          </p>
+
+          <div class="tier-list">
+            <!-- Sold Out / Closed -->
+            <div class="tier-row closed">
+              <div class="tier-info">
+                <span class="tier-name">Founding</span>
+                <span class="tier-desc">Initial release</span>
+              </div>
+              <div class="tier-action">
+                <span class="tier-price">C$39</span>
+                <span class="tier-status">Allocation Exhausted</span>
+              </div>
+            </div>
+
+            <!-- Active -->
+            <div class="tier-row active">
+              <div class="tier-info">
+                <span class="tier-name">Regular</span>
+                <span class="tier-desc">Includes welcome drink</span>
+              </div>
+              <div class="tier-action">
+                <span class="tier-price">C$49</span>
+                <button class="btn-text" onclick="openGate('C$49')">
+                  Submit Application
+                </button>
+              </div>
+            </div>
+
+            <!-- Future / Locked -->
+            <div class="tier-row pending">
+              <div class="tier-info">
+                <span class="tier-name">Final Release</span>
+                <span class="tier-desc">Last remaining places</span>
+              </div>
+              <div class="tier-action">
+                <span class="tier-price">C$59</span>
+                <span class="tier-status">Pending Availability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="logo">VELVET</div>
+        <p>
+          © 2026 Velvet. Membership and access are at the sole discretion of the
+          curation team.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Application Gate (Modal) -->
+    <div class="gate-overlay" id="applicationGate">
+      <div class="gate-panel">
+        <div class="gate-header">
+          <h3>Apply to Join</h3>
+          <button class="btn-close" onclick="closeGate()">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="gate-body" id="gateBody">
+          <p class="gate-context">
+            Applications are reviewed to keep the room balanced and intentional.
+            Selected guests receive a private booking link within 24 hours.
+          </p>
+
+          <form id="admissionForm" onsubmit="submitApplication(event)">
+            <div class="input-group">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" required />
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+
+            <div class="input-group">
+              <label for="instagram">
+                Instagram or LinkedIn
+                <span class="label-badge">(recommended)</span>
+              </label>
+              <input type="text" id="instagram" />
+              <span class="field-hint"
+                >Used only for light verification. Never shown publicly.</span
+              >
+            </div>
+
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" min="18" max="99" required />
+            </div>
+
+            <div class="input-group">
+              <label>Joining as</label>
+              <div class="pill-group">
+                <label class="pill-radio">
+                  <input type="radio" name="gender" value="woman" required />
+                  <span class="pill-label">Woman</span>
+                </label>
+                <label class="pill-radio">
+                  <input type="radio" name="gender" value="man" required />
+                  <span class="pill-label">Man</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="gate-actions">
+              <button type="submit" class="btn-submit" id="submitBtn">
+                Apply to Join
+              </button>
+              <div class="form-footer-note">Shared in confidence.</div>
+            </div>
+          </form>
+        </div>
+
+        <div class="gate-success" id="gateSuccess" style="display: none">
+          <h3>Application Received.</h3>
+          <p>
+            Your profile is under review. If selected, you will receive a
+            private admission link to secure your spot.
+          </p>
+          <button class="btn-text" onclick="closeGate()">Return to Site</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

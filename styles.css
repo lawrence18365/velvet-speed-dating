@@ -1,0 +1,657 @@
+/* ========================================
+   VELVET — PRIVATE, EXCLUSIVE, HIGH STATUS
+   Aesthetics: Moody, Architectural, Scarcity
+   ======================================== */
+
+:root {
+  /* Ultra-dark, slightly warm black */
+  --bg-color: #0a0a0a;
+  --surface-color: #111111;
+
+  /* Text */
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+
+  /* Accents */
+  --accent-white: #ffffff;
+  --border-color: #262626;
+
+  /* Typography */
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Atmospheric Noise */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+}
+
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.headline {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+
+.section-heading {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+}
+
+.logo {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.nav-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   HERO: THE GATE
+   ========================================= */
+.hero-gate {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  position: relative;
+}
+
+/* Subtle glow to add warmth without imagery */
+.hero-gate::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(
+    circle,
+    rgba(200, 180, 160, 0.03) 0%,
+    transparent 60%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.manifesto {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--text-primary);
+  max-width: 500px;
+  margin-bottom: 4rem;
+  line-height: 1.6;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.gate-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.btn-gate {
+  background-color: #ebebeb;
+  color: var(--bg-color);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  padding: 1.4rem 3.5rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
+
+.btn-gate:hover {
+  background-color: #ffffff;
+}
+
+.gate-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.gate-meta .slash {
+  color: var(--border-color);
+  margin: 0 0.25rem;
+}
+
+/* =========================================
+   THE ROOM (Second Fold)
+   ========================================= */
+.the-room {
+  padding: 8rem 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.room-text {
+  max-width: 480px;
+}
+
+.room-text p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.room-text p:first-of-type {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.room-atmosphere {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background-color: var(--surface-color);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Abstract atmosphere instead of a bar photo */
+.atmosphere-blur {
+  width: 150%;
+  height: 150%;
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(160, 100, 80, 0.1) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(80, 100, 160, 0.05) 0%,
+      transparent 50%
+    );
+  filter: blur(40px);
+  animation: slowDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes slowDrift {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.1) translate(-5%, -5%);
+  }
+}
+
+/* =========================================
+   ADMISSION (PRICING)
+   ========================================= */
+.the-admission {
+  padding: 8rem 0 12rem;
+}
+
+.tier-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 4rem;
+  max-width: 500px;
+  font-weight: 300;
+}
+
+.tier-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.3s;
+}
+
+.tier-row:last-child {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tier-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tier-name {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.tier-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.tier-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.tier-price {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.tier-status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.tier-row.active .tier-price {
+  color: var(--text-primary);
+}
+
+.tier-row.closed {
+  opacity: 0.4;
+}
+
+.btn-text {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-bottom: 1px solid var(--text-primary);
+  padding-bottom: 2px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.btn-text:hover {
+  color: var(--text-secondary);
+  border-color: var(--text-secondary);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.site-footer {
+  text-align: center;
+  padding: 4rem 6%;
+  border-top: 1px solid var(--border-color);
+}
+
+.site-footer .logo {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+.site-footer p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   THE GATE (MODAL)
+   ========================================= */
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end; /* Slide in from right */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.gate-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gate-panel {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  background: var(--surface-color);
+  border-left: 1px solid var(--border-color);
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.gate-overlay.active .gate-panel {
+  transform: translateX(0);
+}
+
+.gate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.gate-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.btn-close:hover {
+  color: var(--text-primary);
+}
+
+.gate-context {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.label-badge {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.input-group input {
+  width: 100%;
+  background: var(--bg-color); /* Slightly lighter than panel for contrast */
+  border: 1px solid var(--border-color);
+  padding: 0.9rem 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+  border-radius: 4px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--text-secondary);
+}
+
+.field-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Pill Group for Radio */
+.pill-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.2rem;
+}
+
+.pill-radio {
+  cursor: pointer;
+}
+
+.pill-radio input {
+  display: none;
+}
+
+.pill-label {
+  display: block;
+  text-align: center;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  background: var(--bg-color);
+}
+
+.pill-radio input:checked + .pill-label {
+  border-color: var(--text-primary);
+  color: var(--bg-color);
+  background: var(--text-primary);
+}
+
+.form-footer-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+.gate-actions {
+  margin-top: 4rem;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: var(--accent-white);
+  color: var(--bg-color);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.gate-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.gate-success h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.gate-success p {
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* =========================================
+   ANIMATIONS & RESPONSIVE
+   ========================================= */
+.fade-in {
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .room-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .headline {
+    font-size: 4rem;
+  }
+
+  .gate-panel {
+    padding: 3rem 2rem;
+  }
+
+  .gate-meta {
+    flex-wrap: wrap;
+    line-height: 1.8;
+  }
+
+  .gate-meta .slash {
+    display: none;
+  }
+
+  .gate-meta span {
+    display: block;
+    width: 100%;
+  }
+
+  .room-atmosphere {
+    display: none; /* Hide abstract block on mobile to keep it tight */
+  }
+}
