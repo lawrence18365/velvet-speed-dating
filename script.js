@@ -1,75 +1,86 @@
 /**
  * VELVET — Interaction Logic
- * Minimal, frictionless, fast.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Simple scroll reveal for sections
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-  );
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-  document.querySelectorAll(".the-room, .the-admission").forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+  document.querySelectorAll('.the-room, .the-admission').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(el);
   });
 });
 
-// Modal / Gate Logic
-const gate = document.getElementById("applicationGate");
-const gateBody = document.getElementById("gateBody");
-const gateSuccess = document.getElementById("gateSuccess");
-const form = document.getElementById("admissionForm");
+// ==========================================
+// Application Page Logic
+// ==========================================
 
-function openGate(tier = "") {
-  // Reset
-  gateBody.style.display = "block";
-  gateSuccess.style.display = "none";
-  form.reset();
-
-  gate.classList.add("active");
-  document.body.style.overflow = "hidden"; // Lock scrolling
-}
-
-function closeGate() {
-  gate.classList.remove("active");
-  document.body.style.overflow = ""; // Unlock scrolling
+function unlockApplication(e) {
+  e.preventDefault();
+  
+  const codeInput = document.getElementById('accessCode');
+  const errorMsg = document.getElementById('lockError');
+  const code = codeInput.value.trim().toUpperCase();
+  
+  // Simple client-side check. For real security, this needs a backend.
+  if (code === 'VELVET26' || code === 'ACCESS') {
+    document.getElementById('lockState').style.display = 'none';
+    
+    const appState = document.getElementById('applicationState');
+    appState.style.display = 'block';
+    
+    // Slight fade in
+    appState.style.opacity = '0';
+    setTimeout(() => {
+      appState.style.transition = 'opacity 0.5s ease';
+      appState.style.opacity = '1';
+    }, 50);
+  } else {
+    errorMsg.style.display = 'block';
+    codeInput.style.borderColor = '#ff4444';
+    
+    setTimeout(() => {
+      errorMsg.style.display = 'none';
+      codeInput.style.borderColor = 'var(--border-color)';
+    }, 3000);
+  }
 }
 
 function submitApplication(e) {
   e.preventDefault();
-
-  const btn = document.getElementById("submitBtn");
+  
+  const btn = document.getElementById('submitBtn');
   const originalText = btn.textContent;
-
-  btn.textContent = "Submitting...";
+  
+  btn.textContent = 'Submitting...';
   btn.disabled = true;
-
+  
   // Simulate network processing delay
   setTimeout(() => {
-    gateBody.style.display = "none";
-    gateSuccess.style.display = "flex";
-
+    document.getElementById('applicationState').style.display = 'none';
+    
+    const successState = document.getElementById('successState');
+    successState.style.display = 'flex';
+    successState.style.opacity = '0';
+    
+    setTimeout(() => {
+      successState.style.transition = 'opacity 0.5s ease';
+      successState.style.opacity = '1';
+    }, 50);
+    
     // Reset button internally
     btn.textContent = originalText;
     btn.disabled = false;
   }, 1200);
 }
-
-// Close on backdrop click
-gate.addEventListener("click", (e) => {
-  if (e.target === gate) {
-    closeGate();
-  }
-});

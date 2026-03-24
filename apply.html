@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELVET | Request Admission</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="apply-page">
+    <!-- Subtle atmospheric noise -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <a href="index.html" class="logo" style="text-decoration: none">VELVET</a>
+    </nav>
+
+    <main class="apply-main">
+      <div class="apply-container">
+        <!-- Locked State -->
+        <div id="lockState" class="lock-state">
+          <h1 class="headline" style="font-size: 3rem; margin-bottom: 1.5rem">
+            Restricted Access.
+          </h1>
+          <p class="manifesto" style="font-size: 1.05rem">
+            Please enter your private access code to proceed with your
+            application.
+          </p>
+
+          <form id="lockForm" onsubmit="unlockApplication(event)">
+            <div class="input-group">
+              <input
+                type="password"
+                id="accessCode"
+                placeholder="Access Code"
+                required
+                style="
+                  text-align: center;
+                  letter-spacing: 0.2em;
+                  text-transform: uppercase;
+                "
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn-gate btn-full"
+              style="width: 100%; margin-top: 1rem"
+            >
+              Unlock
+            </button>
+            <div
+              id="lockError"
+              class="field-hint"
+              style="
+                color: #ff4444;
+                display: none;
+                text-align: center;
+                margin-top: 1rem;
+              "
+            >
+              Invalid code.
+            </div>
+          </form>
+
+          <div class="form-footer-note" style="margin-top: 3rem">
+            Don't have a code? <br />
+            <span style="color: var(--text-muted)"
+              >Access codes are distributed privately.</span
+            >
+          </div>
+        </div>
+
+        <!-- Application Form (Hidden initially) -->
+        <div id="applicationState" style="display: none">
+          <h1 class="headline" style="font-size: 3rem; margin-bottom: 1rem">
+            Apply to Join
+          </h1>
+          <p
+            class="gate-context"
+            style="margin-bottom: 3rem; font-size: 1.05rem"
+          >
+            Applications are reviewed to keep the room balanced and intentional.
+            Selected guests receive a private booking link within 24 hours.
+          </p>
+
+          <form id="admissionForm" onsubmit="submitApplication(event)">
+            <div class="input-group">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" required />
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+
+            <div class="input-group">
+              <label for="instagram">
+                Instagram or LinkedIn
+                <span class="label-badge">(recommended)</span>
+              </label>
+              <input type="text" id="instagram" />
+              <span class="field-hint"
+                >Used only for light verification. Never shown publicly.</span
+              >
+            </div>
+
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" min="18" max="99" required />
+            </div>
+
+            <div class="input-group">
+              <label>Joining as</label>
+              <div class="pill-group">
+                <label class="pill-radio">
+                  <input type="radio" name="gender" value="woman" required />
+                  <span class="pill-label">Woman</span>
+                </label>
+                <label class="pill-radio">
+                  <input type="radio" name="gender" value="man" required />
+                  <span class="pill-label">Man</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="gate-actions" style="margin-top: 3rem">
+              <button
+                type="submit"
+                class="btn-submit"
+                id="submitBtn"
+                style="padding: 1.4rem"
+              >
+                Apply to Join
+              </button>
+              <div class="form-footer-note">Shared in confidence.</div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success State -->
+        <div
+          id="successState"
+          class="gate-success"
+          style="display: none; align-items: center; text-align: center"
+        >
+          <h3 style="font-size: 2.5rem">Application Received.</h3>
+          <p style="font-size: 1.05rem">
+            Your profile is under review. If selected, you will receive a
+            private admission link to secure your spot.
+          </p>
+          <a
+            href="index.html"
+            class="btn-text"
+            style="text-decoration: none; margin-top: 2rem"
+            >Return to Site</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

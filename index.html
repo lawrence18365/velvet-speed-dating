@@ -38,9 +38,8 @@
           </p>
 
           <div class="gate-action fade-in">
-            <button class="btn-gate" onclick="openGate()">Apply to Join</button>
-            <div class="gate-meta">
-              <span>Limited to 40 guests</span>
+            <a href="apply.html" class="btn-gate" style="text-decoration: none; display: inline-block;">Apply to Join</a>
+            <div class="gate-meta">              <span>Limited to 40 guests</span>
               <span class="slash">/</span>
               <span>Private room</span>
               <span class="slash">/</span>
@@ -104,11 +103,8 @@
               </div>
               <div class="tier-action">
                 <span class="tier-price">C$49</span>
-                <button class="btn-text" onclick="openGate('C$49')">
-                  Submit Application
-                </button>
-              </div>
-            </div>
+                <a href="apply.html" class="btn-text" style="text-decoration: none; display: inline-block;">Submit Application</a>
+                </div>            </div>
 
             <!-- Future / Locked -->
             <div class="tier-row pending">
@@ -133,94 +129,7 @@
         </p>
       </footer>
     </main>
-
-    <!-- Application Gate (Modal) -->
-    <div class="gate-overlay" id="applicationGate">
-      <div class="gate-panel">
-        <div class="gate-header">
-          <h3>Apply to Join</h3>
-          <button class="btn-close" onclick="closeGate()">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-
-        <div class="gate-body" id="gateBody">
-          <p class="gate-context">
-            Applications are reviewed to keep the room balanced and intentional.
-            Selected guests receive a private booking link within 24 hours.
-          </p>
-
-          <form id="admissionForm" onsubmit="submitApplication(event)">
-            <div class="input-group">
-              <label for="fullName">Full name</label>
-              <input type="text" id="fullName" required />
-            </div>
-
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" required />
-            </div>
-
-            <div class="input-group">
-              <label for="instagram">
-                Instagram or LinkedIn
-                <span class="label-badge">(recommended)</span>
-              </label>
-              <input type="text" id="instagram" />
-              <span class="field-hint"
-                >Used only for light verification. Never shown publicly.</span
-              >
-            </div>
-
-            <div class="input-group">
-              <label for="age">Age</label>
-              <input type="number" id="age" min="18" max="99" required />
-            </div>
-
-            <div class="input-group">
-              <label>Joining as</label>
-              <div class="pill-group">
-                <label class="pill-radio">
-                  <input type="radio" name="gender" value="woman" required />
-                  <span class="pill-label">Woman</span>
-                </label>
-                <label class="pill-radio">
-                  <input type="radio" name="gender" value="man" required />
-                  <span class="pill-label">Man</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="gate-actions">
-              <button type="submit" class="btn-submit" id="submitBtn">
-                Apply to Join
-              </button>
-              <div class="form-footer-note">Shared in confidence.</div>
-            </div>
-          </form>
-        </div>
-
-        <div class="gate-success" id="gateSuccess" style="display: none">
-          <h3>Application Received.</h3>
-          <p>
-            Your profile is under review. If selected, you will receive a
-            private admission link to secure your spot.
-          </p>
-          <button class="btn-text" onclick="closeGate()">Return to Site</button>
-        </div>
-      </div>
-    </div>
-
     <script src="script.js"></script>
   </body>
 </html>
+
